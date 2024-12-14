@@ -1,0 +1,13 @@
+services:
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    env_file: .env
+    command: tunnel --no-autoupdate run
+    restart: unless-stopped
+    networks:
+      - tunnel-network
+
+networks:
+  tunnel-network:
+    external: true
+    name: ${NETWORK_NAME}
